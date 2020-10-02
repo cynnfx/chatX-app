@@ -33,11 +33,21 @@ $ cd chatX-app
 $ npm install
 ```
 
+### Lint project
+
+Check if project is correctly linted (airbnb linter).
+
+```sh
+$ cd chatX-app
+$ npm run lint
+```
+
 #### Lauchning Application
 
 Generate Expo Application:
 
 ```sh
+$ cd chatX-app
 $ npm start # you can open iOS, Android, or web from here, or run them directly with the commands below.
 $ npm run android
 $ npm run ios # requires an iOS device or macOS for access to an iOS simulator
