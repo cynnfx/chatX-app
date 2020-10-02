@@ -2,6 +2,14 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import Txt from './src/components/Simpletxt.tsx';
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
 
 const App = () => (
   <View style={styles.container}>
@@ -11,15 +19,6 @@ const App = () => (
     />
   </View>
 );
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default App;
 
