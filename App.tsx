@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Txt from './src/components/Simpletxt.tsx';
+import Txt from './src/components/Simpletxt';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 
 const styles = StyleSheet.create({
   container: {
@@ -9,14 +11,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-});
+}); 
+
+const initialState = {
+};
+
+const reducer = () => {
+};
+
+const store = createStore(reducer);
 
 const App = () => (
   <View style={styles.container}>
-    <Txt
-      text="Open up App.js to start working on your app!"
-      color="#000"
-    />
+    <Provider store={store}>
+      <Txt
+        text="Open up App.js to start working on your app!"
+        color="#000"
+      />
+    </Provider>
   </View>
 );
 
