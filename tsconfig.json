@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    "target": "es6",
+    "baseUrl": "./",
     "allowSyntheticDefaultImports": true,
     "jsx": "react-native",
     "lib": ["dom", "esnext"],
@@ -8,5 +10,8 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "strict": true
-  }
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }

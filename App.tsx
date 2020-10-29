@@ -1,37 +1,22 @@
+import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import Txt from './src/components/Simpletxt.tsx';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+import useCachedResources from './app/hooks/useCachedResources';
+import useColorScheme from './app/hooks/useColorScheme';
+import Navigation from './app/navigation';
 
-const App = () => (
-  <View style={styles.container}>
-    <Txt
-      text="Open up App.js to start working on your app!"
-      color="#000"
-    />
-  </View>
-);
+export default function App(): JSX.Element {
+  const isLoadingComplete = useCachedResources();
+  const colorScheme = useColorScheme();
 
-export default App;
-
-// Error ESLINT-AIRBNB
-// export default class App extends React.Component {
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <HelloText
-//           text="Open up App.js to start working on your app!"
-//           color="#000"
-//         />
-//       </View>
-//     );
-//   }
-// }
+  if (!isLoadingComplete) {
+    return null;
+  }
+  return (
+    <SafeAreaProvider>
+      <Navigation colorScheme={colorScheme} />
+      <StatusBar />
+    </SafeAreaProvider>
+  );
+}

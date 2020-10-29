@@ -2,7 +2,7 @@
 
 [![N|Solid](https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-256.png)](https://nodesource.com/products/nsolid)
 
-ChatX is a ReactNative (Android & IOS) Expo app.
+ChatX is a ReactNative (Android & IOS) Expo app written in typeScript.
 
   - Chatting with people
   - Basic profile (Description and Profile Picture)
