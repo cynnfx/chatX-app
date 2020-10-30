@@ -70,7 +70,11 @@ function handleHelpPress() {
   );
 }
 
-export default function EditScreenInfo({ path }: { path: string }) {
+export default function EditScreenInfo({
+  path,
+}: {
+  path: string;
+}): JSX.Element {
   return (
     <View>
       <View style={styles.getStartedContainer}>

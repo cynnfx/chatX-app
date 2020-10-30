@@ -47,7 +47,7 @@ function TabTwoNavigator() {
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
-export default function BottomTabNavigator() {
+export default function BottomTabNavigator(): JSX.Element {
   const colorScheme = useColorScheme();
 
   return (
