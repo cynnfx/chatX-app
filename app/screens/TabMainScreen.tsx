@@ -38,7 +38,6 @@ export default function TabMainScreen(): JSX.Element {
   return (
     <View style={styles.container}>
       <ScrollView>
-
         <View style={styles.log_container}>
           <Image
             style={{ width: 160, height: 160, borderRadius: 400 / 2 }}
