@@ -16,6 +16,11 @@ export default {
               TabTwoScreen: 'two',
             },
           },
+          TabAuth: {
+            screens: {
+              TabAuthScreen: 'auth',
+            },
+          },
         },
       },
       NotFound: '*',

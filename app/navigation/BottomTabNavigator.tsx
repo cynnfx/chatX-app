@@ -7,6 +7,7 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
+import TabAuthScreen from '../screens/TabAuthScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
 
 // You can explore the built-in icon families and icons on the web at:
@@ -45,6 +46,19 @@ function TabTwoNavigator() {
   );
 }
 
+const TabAuthStack = createStackNavigator<TabAuthParamList>();
+
+function TabAuthNavigator() {
+  return (
+    <TabAuthStack.Navigator>
+      <TabAuthStack.Screen
+        name="TabAuthScreen"
+        component={TabAuthScreen}
+        options={{ headerTitle: 'Tab Auth Title' }}
+      />
+    </TabAuthStack.Navigator>
+  );
+}
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator(): JSX.Element {
@@ -55,6 +69,15 @@ export default function BottomTabNavigator(): JSX.Element {
       initialRouteName="TabOne"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
     >
+      <BottomTab.Screen
+        name="Authenticate"
+        component={TabAuthNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
+        }}
+      />
       <BottomTab.Screen
         name="TabOne"
         component={TabOneNavigator}
