@@ -37,15 +37,16 @@ const styles = StyleSheet.create({
 export default function TabMainScreen(): JSX.Element {
   return (
     <View style={styles.container}>
-      <View style={styles.log_container}>
-        <Image
-          style={{ width: 160, height: 160, borderRadius: 400 / 2 }}
-          source={{ uri: 'https://i.imgur.com/SCI3502.jpg' }}
-        />
-        <Text>You&apos;re name</Text>
-      </View>
-
       <ScrollView>
+
+        <View style={styles.log_container}>
+          <Image
+            style={{ width: 160, height: 160, borderRadius: 400 / 2 }}
+            source={{ uri: 'https://i.imgur.com/SCI3502.jpg' }}
+          />
+          <Text>You&apos;re name</Text>
+        </View>
+
         <View style={{ alignItems: 'center' }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Icon name="add" />
