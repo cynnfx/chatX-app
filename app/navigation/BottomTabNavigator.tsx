@@ -8,7 +8,13 @@ import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import TabAuthScreen from '../screens/TabAuthScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import TabMainScreen from '../screens/TabMainScreen';
+import {
+  BottomTabParamList,
+  TabOneParamList,
+  TabTwoParamList,
+  TabMainParamList,
+} from '../types';
 
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
@@ -59,6 +65,21 @@ function TabAuthNavigator() {
     </TabAuthStack.Navigator>
   );
 }
+
+const TabMainStack = createStackNavigator<TabMainParamList>();
+
+function TabMainNavigator() {
+  return (
+    <TabMainStack.Navigator>
+      <TabMainStack.Screen
+        name="TabMainScreen"
+        component={TabMainScreen}
+        options={{ headerTitle: 'Conversations' }}
+      />
+    </TabMainStack.Navigator>
+  );
+}
+
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator(): JSX.Element {
@@ -72,6 +93,15 @@ export default function BottomTabNavigator(): JSX.Element {
       <BottomTab.Screen
         name="Authenticate"
         component={TabAuthNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Chats"
+        component={TabMainNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="ios-code" color={color} />

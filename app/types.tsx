@@ -19,3 +19,7 @@ export type TabTwoParamList = {
 export type TabAuthParamList = {
   TabTwoScreen: undefined;
 };
+
+export type TabMainParamList = {
+  TabTwoScreen: undefined;
+};

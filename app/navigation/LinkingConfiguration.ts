@@ -21,6 +21,11 @@ export default {
               TabAuthScreen: 'auth',
             },
           },
+          TabMain: {
+            screens: {
+              TabMainScreen: 'main',
+            },
+          },
         },
       },
       NotFound: '*',

@@ -1,15 +1,6 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-import {
-  Container,
-  Form,
-  Item,
-  Input,
-  Label,
-  Button,
-  Icon,
-  Text,
-} from 'native-base';
+import { Container, Form, Item, Input, Button, Icon, Text } from 'native-base';
 import { View } from '../components/Themed';
 
 const styles = StyleSheet.create({
@@ -35,10 +26,10 @@ export default function TabAuthScreen(): JSX.Element {
       <Text style={styles.title}>Se Connecter</Text>
       <Form>
         <Item stackedLabel>
-          <Input placeholder="Username"/>
+          <Input placeholder="Username" />
         </Item>
         <Item stackedLabel last>
-          <Input placeholder="Password"/>
+          <Input placeholder="Password" />
           <Input />
         </Item>
         <Button iconLeft primary>
@@ -56,13 +47,13 @@ export default function TabAuthScreen(): JSX.Element {
       <Text style={styles.title}>Creer un compte</Text>
       <Form>
         <Item stackedLabel>
-          <Input placeholder="Username"/>
+          <Input placeholder="Username" />
         </Item>
         <Item stackedLabel>
-          <Input placeholder="Password"/>
+          <Input placeholder="Password" />
         </Item>
         <Item stackedLabel last>
-          <Input placeholder="Password again"/>
+          <Input placeholder="Password again" />
         </Item>
         <Button iconLeft info>
           <Icon name="people" />
