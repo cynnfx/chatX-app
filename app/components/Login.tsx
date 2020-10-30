@@ -1,39 +1,7 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Alert } from 'react-native';
 import { Form, Item, Input, Button, Icon, Text } from 'native-base';
 import { View } from './Themed';
-
-const HelloWorldApp = () => {
-  return fetch(`0.0.0.0`)
-    .then(response => Promise.all([response, response.json()]))
-    .then(([response, responseObj]) => {
-      // fetching = false;
-      return [response, responseObj];
-    })
-    .catch(err => {
-      console.log('error catch search:', err.message);
-      // fetching = false;
-      // Choose one, depends what you need.
-      return false; // If you want to ignore the error and do something in a chained .then()
-      return Promise.reject(err); // If you want to handle the error in a chained .catch()
-    });
-};
-
-function apiLogin(): any {
-  return fetch(`0.0.0.0`)
-    .then(response => Promise.all([response, response.json()]))
-    .then(([response, responseObj]) => {
-      // fetching = false;
-      return [response, responseObj];
-    })
-    .catch(err => {
-      console.log('error catch search:', err.message);
-      // fetching = false;
-      // Choose one, depends what you need.
-      return false; // If you want to ignore the error and do something in a chained .then()
-      return Promise.reject(err); // If you want to handle the error in a chained .catch()
-    });
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -47,24 +15,73 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Login(): JSX.Element {
-  // state = { username = '', password = '' }
-  return (
-    <View>
-      <Text style={styles.title}>Se Connecter</Text>
-      <Form>
-        <Item stackedLabel>
-          <Input placeholder="Username" />
-        </Item>
-        <Item stackedLabel last>
-          <Input placeholder="Password" />
-          <Input />
-        </Item>
-        <Button iconLeft primary>
-          <Icon name="people" />
-          <Text>Connection</Text>
-        </Button>
-      </Form>
-    </View>
-  );
+const warn = message => {
+  Alert.alert('Erreure Login', message, [{ text: 'OK' }], {
+    cancelable: false,
+  });
+};
+
+class Login extends React.PureComponent {
+  constructor() {
+    super();
+    this.state = {
+      password: '',
+      email: '',
+    };
+  }
+
+  apiLogin(): void {
+    const { email, password } = this.state;
+
+    return fetch('https://dealerg.api.cynnfx.fr/auth/login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then(response => response.json())
+      .then(json => {
+        if (json.status === 'fail') {
+          warn(json.message);
+        }
+        // else enregistrer credientiels dans redux
+      })
+      .catch(() => {
+        warn('Serveur non joiniable');
+      });
+    // .finally(() => setLoading(false));
+  }
+
+  render(): JSX.Element {
+    return (
+      <View>
+        <Text style={styles.title}>Se Connecter</Text>
+        <Form>
+          <Item stackedLabel>
+            <Input
+              placeholder="Email"
+              onChangeText={str => this.setState({ email: str })}
+            />
+          </Item>
+          <Item stackedLabel last>
+            <Input
+              placeholder="Password"
+              onChangeText={str => this.setState({ password: str })}
+            />
+          </Item>
+          <Button iconLeft primary onPress={() => this.apiLogin()}>
+            <Icon name="people" />
+            <Text>Connection</Text>
+          </Button>
+        </Form>
+      </View>
+    );
+  }
 }
+
+export default Login;
