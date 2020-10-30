@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const warn = message => {
+const warn = (message: string) => {
   Alert.alert('Erreure Login', message, [{ text: 'OK' }], {
     cancelable: false,
   });
@@ -33,7 +33,7 @@ class Login extends React.PureComponent {
   apiLogin(): void {
     const { email, password } = this.state;
 
-    return fetch('https://dealerg.api.cynnfx.fr/auth/login', {
+    fetch('https://dealerg.api.cynnfx.fr/auth/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -48,6 +48,8 @@ class Login extends React.PureComponent {
       .then(json => {
         if (json.status === 'fail') {
           warn(json.message);
+        } else {
+          warn(json.Authorization);
         }
         // else enregistrer credientiels dans redux
       })
