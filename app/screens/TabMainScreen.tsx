@@ -47,7 +47,12 @@ export default function TabMainScreen(): JSX.Element {
 
       <ScrollView>
         <View style={{ alignItems: 'center' }}>
-          <Icon name="add"/>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Icon name="add" />
+            <Text style={{ color: 'grey' }}>
+              &nbsp;&nbsp;&nbsp;&nbsp;start new chat
+            </Text>
+          </View>
         </View>
         <List>
           <ListItem avatar>
