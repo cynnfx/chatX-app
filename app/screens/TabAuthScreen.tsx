@@ -35,11 +35,10 @@ export default function TabAuthScreen(): JSX.Element {
       <Text style={styles.title}>Se Connecter</Text>
       <Form>
         <Item stackedLabel>
-          <Label>Username</Label>
-          <Input />
+          <Input placeholder="Username"/>
         </Item>
         <Item stackedLabel last>
-          <Label>Password</Label>
+          <Input placeholder="Password"/>
           <Input />
         </Item>
         <Button iconLeft primary>
@@ -57,16 +56,13 @@ export default function TabAuthScreen(): JSX.Element {
       <Text style={styles.title}>Creer un compte</Text>
       <Form>
         <Item stackedLabel>
-          <Label>Username</Label>
-          <Input />
+          <Input placeholder="Username"/>
+        </Item>
+        <Item stackedLabel>
+          <Input placeholder="Password"/>
         </Item>
         <Item stackedLabel last>
-          <Label>Password</Label>
-          <Input />
-        </Item>
-        <Item stackedLabel last>
-          <Label>Password again</Label>
-          <Input />
+          <Input placeholder="Password again"/>
         </Item>
         <Button iconLeft info>
           <Icon name="people" />
