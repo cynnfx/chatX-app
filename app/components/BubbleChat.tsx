@@ -50,16 +50,22 @@ const styles = StyleSheet.create({
   arrow_right: {
     right: moderateScale(-6, 0.5),
   },
+  avatar: {
+    width: moderateScale(20, 2),
+    height: moderateScale(20, 2),
+  },
 });
 
 const BubbleChat = ({
   mine,
+  sender,
   text,
   image,
 }: {
   mine: bool;
+  sender: string;
   text: string;
-  image: string;
+  image: ImageSourcePropType;
 }): JSX.Element => {
   return (
     <View style={[styles.message, mine ? styles.mine : styles.not_mine]}>
@@ -72,11 +78,15 @@ const BubbleChat = ({
         ]}
       >
         {image ? (
+          <View style={{ flexDirection:'row-reverse', justifyContent: 'space-between'}}>
           <Image
-            style={{ alignSelf: mine ? 'flex-start' : 'flex-end' }}
-            borderRadius={10}
+            style={{ width: styles.avatar.width, height: styles.avatar.height }}
+            borderRadius={20}
             source={image}
           />
+          <Text style={{ color: mine ? '#708090' : '#DCDCDC'}}>{sender}</Text>
+          </View>
+
         ) : null}
         {text ? (
           <Text
