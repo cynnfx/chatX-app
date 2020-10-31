@@ -2,7 +2,7 @@
   "expo": {
     "name": "chatX",
     "slug": "chatX",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "scheme": "myapp",
@@ -18,12 +18,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cynnfx.chatX"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "description": "",
-    "githubUrl": "https://github.com/cynnfx/chatX-app"
+    "githubUrl": "https://github.com/cynnfx/chatX-app",
+    "android": {
+      "package": "com.cynnfx.chatX"
+    }
   }
 }

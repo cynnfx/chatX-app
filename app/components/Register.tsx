@@ -56,10 +56,11 @@ class Register extends React.PureComponent {
             // warn(json.Authorization);
           }
           // else enregistrer credientiels dans redux
+        })
+        .catch(() => {
+          warn('verifiez les informations saisies');
+          // console.log(error)
         });
-      // .catch(error => {
-      //   console.log(error)
-      // });
       // .finally(() => setLoading(false));
     }
   }

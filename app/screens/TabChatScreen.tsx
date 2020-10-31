@@ -36,21 +36,21 @@ const styles = StyleSheet.create({
 
 const DATA = [
   {
-    username: "Main dishes",
-    message: ["Pizza", "Burger", "Risotto"]
+    username: 'Main dishes',
+    message: ['Pizza', 'Burger', 'Risotto'],
   },
   {
-    title: "Sides",
-    data: ["French Fries", "Onion Rings", "Fried Shrimps"]
+    title: 'Sides',
+    data: ['French Fries', 'Onion Rings', 'Fried Shrimps'],
   },
   {
-    title: "Drinks",
-    data: ["Water", "Coke", "Beer"]
+    title: 'Drinks',
+    data: ['Water', 'Coke', 'Beer'],
   },
   {
-    title: "Desserts",
-    data: ["Cheese Cake", "Ice Cream"]
-  }
+    title: 'Desserts',
+    data: ['Cheese Cake', 'Ice Cream'],
+  },
 ];
 const ChatBox = (username: string, message: string) => {
   return (
@@ -108,7 +108,6 @@ export default function TabChatScreen(): JSX.Element {
             </Right>
           </ListItem>
         </List>
-        
       </ScrollView>
     </View>
   );

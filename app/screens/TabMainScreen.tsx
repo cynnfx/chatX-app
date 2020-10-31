@@ -11,6 +11,7 @@ import {
   Icon,
 } from 'native-base';
 import { View } from '../components/Themed';
+import BubbleChat from '../components/BubbleChat';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,41 +35,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const DATA = [
-  {
-    username: "Main dishes",
-    message: ["Pizza", "Burger", "Risotto"]
-  },
-  {
-    title: "Sides",
-    data: ["French Fries", "Onion Rings", "Fried Shrimps"]
-  },
-  {
-    title: "Drinks",
-    data: ["Water", "Coke", "Beer"]
-  },
-  {
-    title: "Desserts",
-    data: ["Cheese Cake", "Ice Cream"]
-  }
-];
-const ChatBox = (username: string, message: string) => {
-  return (
-    <ListItem avatar>
-      <Left>
-        <Thumbnail source={{ uri: 'https://picsum.photos/seed/01/200/300' }} />
-      </Left>
-      <Body>
-        <Text>{username}</Text>
-        <Text note>{message}</Text>
-      </Body>
-      <Right>
-        <Text note>3:43 pm</Text>
-      </Right>
-    </ListItem>
-  );
-};
-
 export default function TabMainScreen(): JSX.Element {
   return (
     <View style={styles.container}>
@@ -89,6 +55,12 @@ export default function TabMainScreen(): JSX.Element {
             </Text>
           </View>
         </View>
+        <BubbleChat mine text="Slt ca va?" image="" />
+        <BubbleChat
+          mine={false}
+          text="m Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently "
+          image=""
+        />
         <List>
           <ListItem avatar>
             <Left>
