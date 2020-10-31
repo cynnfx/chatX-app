@@ -26,6 +26,11 @@ export default {
               TabMainScreen: 'main',
             },
           },
+          TabChat: {
+            screens: {
+              TabChatScreen: 'chat',
+            },
+          },
         },
       },
       NotFound: '*',

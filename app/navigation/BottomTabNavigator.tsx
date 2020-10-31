@@ -9,11 +9,13 @@ import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import TabAuthScreen from '../screens/TabAuthScreen';
 import TabMainScreen from '../screens/TabMainScreen';
+import TabChatScreen from '../screens/TabChatScreen';
 import {
   BottomTabParamList,
   TabOneParamList,
   TabTwoParamList,
   TabMainParamList,
+  TabChatParamList,
 } from '../types';
 
 // You can explore the built-in icon families and icons on the web at:
@@ -80,6 +82,20 @@ function TabMainNavigator() {
   );
 }
 
+const TabChatStack = createStackNavigator<TabChatParamList>();
+
+function TabChatNavigator() {
+  return (
+    <TabMainStack.Navigator>
+      <TabMainStack.Screen
+        name="TabChatScreen"
+        component={TabChatScreen}
+        options={{ headerTitle: 'Chat' }}
+      />
+    </TabMainStack.Navigator>
+  );
+}
+
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 export default function BottomTabNavigator(): JSX.Element {
@@ -102,6 +118,15 @@ export default function BottomTabNavigator(): JSX.Element {
       <BottomTab.Screen
         name="Chats"
         component={TabMainNavigator}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-code" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Chat"
+        component={TabChatNavigator}
         options={{
           tabBarIcon: ({ color }) => (
             <TabBarIcon name="ios-code" color={color} />

@@ -9,29 +9,8 @@ import {
   Thumbnail,
   Body,
   Icon,
-  Item,
 } from 'native-base';
 import { View } from '../components/Themed';
-import { SectionList } from 'react-native';
-
-const DATA = [
-  {
-    title: "Thomas Billet",
-    data: ["message 1", "message 3", "message 2"]
-  },
-  {
-    title: "Charles Ougin",
-    data: ["message 1", "message 3", "message 2"]
-  },
-  {
-    title: "Remy Norbert",
-    data: ["message 1", "message 3", "message 2"]
-  },
-  {
-    title: "Theo Da Silva",
-    data: ["message 1", "message 3", "message 2"]
-  }
-];
 
 const styles = StyleSheet.create({
   container: {
@@ -55,6 +34,42 @@ const styles = StyleSheet.create({
   },
 });
 
+const DATA = [
+  {
+    username: "Main dishes",
+    message: ["Pizza", "Burger", "Risotto"]
+  },
+  {
+    title: "Sides",
+    data: ["French Fries", "Onion Rings", "Fried Shrimps"]
+  },
+  {
+    title: "Drinks",
+    data: ["Water", "Coke", "Beer"]
+  },
+  {
+    title: "Desserts",
+    data: ["Cheese Cake", "Ice Cream"]
+  }
+];
+const ChatBox = (username: string, message: string) => {
+  return (
+    <ListItem avatar>
+      <Left>
+        <Thumbnail source={{ uri: 'https://picsum.photos/seed/01/200/300' }} />
+      </Left>
+      <Body>
+        <Text>{username}</Text>
+        <Text note>{message}</Text>
+      </Body>
+      <Right>
+        <Text note>3:43 pm</Text>
+      </Right>
+    </ListItem>
+  );
+};
+
+export default function TabMainScreen(): JSX.Element {
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -74,14 +89,6 @@ const styles = StyleSheet.create({
             </Text>
           </View>
         </View>
-        <SectionList
-          sections={DATA}
-          keyExtractor={(item, index) => item + index}
-          renderItem={({ item }) => <Item title={item} />}
-          renderSectionHeader={({ section: { title } }) => (
-            <Text>{title}</Text>
-          )}
-        />
         <List>
           <ListItem avatar>
             <Left>
