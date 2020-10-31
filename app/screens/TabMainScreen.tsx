@@ -9,8 +9,29 @@ import {
   Thumbnail,
   Body,
   Icon,
+  Item,
 } from 'native-base';
 import { View } from '../components/Themed';
+import { SectionList } from 'react-native';
+
+const DATA = [
+  {
+    title: "Thomas Billet",
+    data: ["message 1", "message 3", "message 2"]
+  },
+  {
+    title: "Charles Ougin",
+    data: ["message 1", "message 3", "message 2"]
+  },
+  {
+    title: "Remy Norbert",
+    data: ["message 1", "message 3", "message 2"]
+  },
+  {
+    title: "Theo Da Silva",
+    data: ["message 1", "message 3", "message 2"]
+  }
+];
 
 const styles = StyleSheet.create({
   container: {
@@ -34,7 +55,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function TabMainScreen(): JSX.Element {
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -54,6 +74,14 @@ export default function TabMainScreen(): JSX.Element {
             </Text>
           </View>
         </View>
+        <SectionList
+          sections={DATA}
+          keyExtractor={(item, index) => item + index}
+          renderItem={({ item }) => <Item title={item} />}
+          renderSectionHeader={({ section: { title } }) => (
+            <Text>{title}</Text>
+          )}
+        />
         <List>
           <ListItem avatar>
             <Left>
