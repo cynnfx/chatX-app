@@ -55,10 +55,15 @@ export default function TabMainScreen(): JSX.Element {
             </Text>
           </View>
         </View>
-        <BubbleChat mine={true} sender="moi" text="Slt ca va?" image={{ uri: 'https://i.imgur.com/SCI3502.jpg' }} />
+        <BubbleChat
+          mine
+          sender="moi"
+          text="Slt ca va?"
+          image={{ uri: 'https://i.imgur.com/SCI3502.jpg' }}
+        />
         <BubbleChat
           mine={false}
-          sender="juanLaBiatch" 
+          sender="juanLaBiatch"
           text="m Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently "
           image={{ uri: 'https://picsum.photos/seed/01/200/300' }}
         />

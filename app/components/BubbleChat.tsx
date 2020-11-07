@@ -78,15 +78,24 @@ const BubbleChat = ({
         ]}
       >
         {image ? (
-          <View style={{ flexDirection:'row-reverse', justifyContent: 'space-between'}}>
-          <Image
-            style={{ width: styles.avatar.width, height: styles.avatar.height }}
-            borderRadius={20}
-            source={image}
-          />
-          <Text style={{ color: mine ? '#708090' : '#DCDCDC'}}>{sender}</Text>
+          <View
+            style={{
+              flexDirection: 'row-reverse',
+              justifyContent: 'space-between',
+            }}
+          >
+            <Image
+              style={{
+                width: styles.avatar.width,
+                height: styles.avatar.height,
+              }}
+              borderRadius={20}
+              source={image}
+            />
+            <Text style={{ color: mine ? '#708090' : '#DCDCDC' }}>
+              {sender}
+            </Text>
           </View>
-
         ) : null}
         {text ? (
           <Text

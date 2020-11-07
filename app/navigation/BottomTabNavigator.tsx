@@ -10,6 +10,7 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import TabAuthScreen from '../screens/TabAuthScreen';
 import TabMainScreen from '../screens/TabMainScreen';
 import TabChatScreen from '../screens/TabChatScreen';
+import ChatHeader from '../components/chatComponents/ChatHeader';
 import {
   BottomTabParamList,
   TabOneParamList,
@@ -86,13 +87,13 @@ const TabChatStack = createStackNavigator<TabChatParamList>();
 
 function TabChatNavigator() {
   return (
-    <TabMainStack.Navigator>
-      <TabMainStack.Screen
+    <TabChatStack.Navigator>
+      <TabChatStack.Screen
         name="TabChatScreen"
         component={TabChatScreen}
-        options={{ headerTitle: 'Chat' }}
+        options={{ headerTitle: props => <ChatHeader {...props} /> }}
       />
-    </TabMainStack.Navigator>
+    </TabChatStack.Navigator>
   );
 }
 
