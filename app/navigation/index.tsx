@@ -48,14 +48,36 @@ import RegisterComponent from '../containers/registerContainer';
 //   );
 // }
 
+const headerOpts = (title: string) => ({
+  // headerShown: false,
+  title,
+  headerLeft: null,
+  headerStyle: {
+    backgroundColor: '#f4511e',
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+    alignSelf: 'center',
+  },
+});
+
 const Stack = createStackNavigator();
 
 const MainStack = (): JSX.Element => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginComponent} />
-        <Stack.Screen name="Register" component={RegisterComponent} />
+        <Stack.Screen
+          name="Login"
+          options={headerOpts('Se Connecter')}
+          component={LoginComponent}
+        />
+        <Stack.Screen
+          name="Register"
+          options={headerOpts("S'inscrire")}
+          component={RegisterComponent}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

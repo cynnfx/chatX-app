@@ -1,33 +1,13 @@
 import React, { useState, useCallback } from 'react';
 import { Form, Item, Input, Button, Icon, Text } from 'native-base';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 
 import { connect } from 'react-redux';
 import { getUserSelector } from '../reducers/user-reducer';
 import logUser from '../actions/user/loguser';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  centerElem: {
-    flexWrap: 'wrap',
-    alignSelf: 'center',
-  },
-  defaultElem: {
-    marginBottom: 30,
-    marginLeft: 20,
-    marginRight: 20,
-  },
-  defaultInput: {
-    marginBottom: 15,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-});
+import styles from './styles';
+
 const LoginComponent = (props: Props): JSX.Element => {
   const { navigation, login } = props;
   const [mail, setMail] = useState('');
@@ -46,7 +26,7 @@ const LoginComponent = (props: Props): JSX.Element => {
           style={{
             ...styles.defaultElem,
             ...styles.centerElem,
-            ...styles.title,
+            ...styles.title1,
           }}
         >
           Se Connecter
@@ -70,18 +50,18 @@ const LoginComponent = (props: Props): JSX.Element => {
           onPress={onLoginClick}
         >
           <Icon name="people" />
-          <Text>Login</Text>
+          <Text>Connection</Text>
         </Button>
-        <TouchableOpacity style={styles.button} onPress={navRegister}>
+        <TouchableOpacity onPress={navRegister}>
           <Text style={styles.centerElem}>Ou</Text>
           <Text
             style={{
               ...styles.defaultElem,
               ...styles.centerElem,
-              ...styles.title,
+              ...styles.title2,
             }}
           >
-            Creer un compte
+            Créer un compte
           </Text>
         </TouchableOpacity>
       </Form>
