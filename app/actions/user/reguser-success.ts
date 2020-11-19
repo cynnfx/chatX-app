@@ -1,9 +1,5 @@
-import { REGUSER_SUCCESS, REGUSER_ERROR } from '../../constants/action-types';
-
-const errPayload = {
-  type: REGUSER_ERROR,
-  payload: { message: 'Error' },
-};
+import { REGUSER_SUCCESS } from '../../constants/action-types';
+import reguserError from './reguser-error';
 
 const reguserSuccess = (
   name: string,
@@ -16,7 +12,7 @@ const reguserSuccess = (
     if (res.status !== 201) return errPayload;
     token = res.data.Authorization;
   } catch (e) {
-    return errPayload;
+    return reguserError();
   }
   return {
     type: REGUSER_SUCCESS,

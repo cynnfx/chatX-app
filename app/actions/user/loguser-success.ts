@@ -1,9 +1,5 @@
-import { LOGUSER_SUCCESS, LOGUSER_ERROR } from '../../constants/action-types';
-
-const errPayload = {
-  type: LOGUSER_ERROR,
-  payload: { message: 'Error' },
-};
+import { LOGUSER_SUCCESS } from '../../constants/action-types';
+import loguserError from './loguser-error';
 
 const loguserSuccess = (
   email: Record<string, unknown>,
@@ -15,7 +11,7 @@ const loguserSuccess = (
     if (res.status !== 200) return errPayload;
     token = res.data.Authorization;
   } catch (e) {
-    return errPayload;
+    return loguserError();
   }
   return {
     type: LOGUSER_SUCCESS,
