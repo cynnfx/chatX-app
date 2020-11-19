@@ -27,3 +27,14 @@ export type TabMainParamList = {
 export type TabChatParamList = {
   TabTwoScreen: undefined;
 };
+
+export type UserT = {
+  userInfo: {
+    email: string;
+    pass: string;
+    token: string;
+  };
+  isAuth: boolean;
+  isLoading: boolean;
+  error: boolean;
+};

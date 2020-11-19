@@ -19,6 +19,8 @@ import {
   TabChatParamList,
 } from '../types';
 
+import LoginComponent from '../containers/login-container';
+
 // You can explore the built-in icon families and icons on the web at:
 // https://icons.expo.fyi/
 function TabBarIcon(props: { name: string; color: string }) {
@@ -47,8 +49,8 @@ function TabTwoNavigator() {
   return (
     <TabTwoStack.Navigator>
       <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
+        name="LoginComponent"
+        component={LoginComponent}
         options={{ headerTitle: 'Tab Two Title' }}
       />
     </TabTwoStack.Navigator>
