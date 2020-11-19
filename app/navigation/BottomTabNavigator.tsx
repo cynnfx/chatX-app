@@ -6,7 +6,6 @@ import * as React from 'react';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
 import TabAuthScreen from '../screens/TabAuthScreen';
 import TabMainScreen from '../screens/TabMainScreen';
 import TabChatScreen from '../screens/TabChatScreen';

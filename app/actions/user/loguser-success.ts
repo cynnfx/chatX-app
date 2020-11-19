@@ -6,6 +6,8 @@ const errPayload = {
 };
 
 const loguserSuccess = (
+  email: Record<string, unknown>,
+  pass: Record<string, unknown>,
   res: Record<string, unknown>,
 ): Record<string, unknown> => {
   let token;
@@ -17,7 +19,7 @@ const loguserSuccess = (
   }
   return {
     type: LOGUSER_SUCCESS,
-    payload: { token },
+    payload: { email, token, pass },
   };
 };
 

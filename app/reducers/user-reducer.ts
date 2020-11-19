@@ -3,7 +3,6 @@ import {
   LOGUSER_ERROR,
   LOGUSER_REQUEST,
   LOGUSER_SUCCESS,
-  UPDATE_CREDS,
 } from '../constants/action-types';
 
 const initialState = {
@@ -34,8 +33,8 @@ const userReducer = (
         isLoading: false,
         error: false,
         userInfo: {
-          email: state.userInfo.email,
-          pass: state.userInfo.pass,
+          email: action.payload.email,
+          pass: action.payload.pass,
           token: action.payload.token,
         },
       };
@@ -54,22 +53,10 @@ const userReducer = (
         isAuth: false,
         isLoading: false,
         error: true,
-      };
-    }
-    case UPDATE_CREDS: {
-      return {
-        ...state,
-        isAuth: false,
         userInfo: {
-          email:
-            action.payload.credential.type === 'email'
-              ? action.payload.credential.str
-              : state.userInfo.email,
-          pass:
-            action.payload.credential.type === 'pass'
-              ? action.payload.credential.str
-              : state.userInfo.pass,
-          token: state.userInfo.token,
+          email: '',
+          pass: '',
+          token: '',
         },
       };
     }
