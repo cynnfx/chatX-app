@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { Container, Header, Left, Body, Right, Button, Icon, Title, Text, Image } from 'native-base';
+import React, { PureComponent } from 'react';
+import { Button, Icon, Text } from 'native-base';
 
-export default class ChatHeader extends Component {
-  render() {
+export default class ChatHeader extends PureComponent {
+  render(): JSX.Element {
     return (
       <Button iconLeft transparent>
-        <Icon name='arrow-back' />
+        <Icon name="arrow-back" />
         <Text>Jeanne</Text>
       </Button>
-  );
+    );
   }
 }
