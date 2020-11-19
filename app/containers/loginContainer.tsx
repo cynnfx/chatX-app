@@ -22,15 +22,6 @@ const LoginComponent = (props: Props): JSX.Element => {
   return (
     <View style={styles.container}>
       <Form>
-        <Text
-          style={{
-            ...styles.defaultElem,
-            ...styles.centerElem,
-            ...styles.title1,
-          }}
-        >
-          Se Connecter
-        </Text>
         <Item
           style={{ ...styles.defaultElem, ...styles.defaultInput }}
           stackedLabel

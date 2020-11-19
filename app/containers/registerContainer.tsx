@@ -4,33 +4,31 @@ import { View, TouchableOpacity } from 'react-native';
 
 import { connect } from 'react-redux';
 import { getUserSelector } from '../reducers/user-reducer';
-import logUser from '../actions/user/loguser';
+import regUser from '../actions/user/reguser';
 
 import styles from './styles';
 
 const RegisterComponent = (props: Props): JSX.Element => {
-  const { navigation, login } = props;
+  const { navigation, register } = props;
+  const [name, setName] = useState('');
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
 
   const onLoginClick = useCallback(() => {
-    login(mail, password);
-  }, [login, mail, password]);
+    register(name, mail, password);
+  }, [register, name, mail, password]);
 
   const navLogin = () => navigation.navigate('Login');
 
   return (
     <View style={styles.container}>
       <Form>
-        <Text
-          style={{
-            ...styles.defaultElem,
-            ...styles.centerElem,
-            ...styles.title1,
-          }}
+        <Item
+          style={{ ...styles.defaultElem, ...styles.defaultInput }}
+          stackedLabel
         >
-          S&apos;inscrire
-        </Text>
+          <Input placeholder="Name" onChangeText={str => setName(str)} />
+        </Item>
         <Item
           style={{ ...styles.defaultElem, ...styles.defaultInput }}
           stackedLabel
@@ -75,8 +73,8 @@ const mapStateToProps = (state: Record<string, unknown>) =>
 const mapDispatchToProps = (
   dispatch: Dispatch<IGetAllAssets | ISetAllAssets>,
 ) => ({
-  login: (email, password) => dispatch(logUser(email, password)),
-  register: (email, password) => dispatch(logUser(email, password)),
+  // login: (email, password) => dispatch(logUser(email, password)),
+  register: (name, email, password) => dispatch(regUser(name, email, password)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterComponent);

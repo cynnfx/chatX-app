@@ -3,10 +3,14 @@ import {
   LOGUSER_ERROR,
   LOGUSER_REQUEST,
   LOGUSER_SUCCESS,
+  REGUSER_ERROR,
+  REGUSER_REQUEST,
+  REGUSER_SUCCESS,
 } from '../constants/action-types';
 
 const initialState = {
   userInfo: {
+    name: '',
     email: '',
     pass: '',
     token: '',
@@ -33,6 +37,7 @@ const userReducer = (
         isLoading: false,
         error: false,
         userInfo: {
+          name: state.name,
           email: action.payload.email,
           pass: action.payload.pass,
           token: action.payload.token,
@@ -45,6 +50,12 @@ const userReducer = (
         isAuth: false,
         isLoading: true,
         error: false,
+        userInfo: {
+          name: '',
+          email: '',
+          pass: '',
+          token: '',
+        },
       };
     }
     case LOGUSER_ERROR: {
@@ -54,6 +65,48 @@ const userReducer = (
         isLoading: false,
         error: true,
         userInfo: {
+          name: '',
+          email: '',
+          pass: '',
+          token: '',
+        },
+      };
+    }
+    case REGUSER_SUCCESS: {
+      return {
+        isAuth: true,
+        isLoading: false,
+        error: false,
+        userInfo: {
+          name: action.payload.name,
+          email: action.payload.email,
+          pass: action.payload.pass,
+          token: action.payload.token,
+        },
+      };
+    }
+    case REGUSER_REQUEST: {
+      return {
+        ...state,
+        isAuth: false,
+        isLoading: true,
+        error: false,
+        userInfo: {
+          name: '',
+          email: '',
+          pass: '',
+          token: '',
+        },
+      };
+    }
+    case REGUSER_ERROR: {
+      return {
+        ...state,
+        isAuth: false,
+        isLoading: false,
+        error: true,
+        userInfo: {
+          name: '',
           email: '',
           pass: '',
           token: '',
