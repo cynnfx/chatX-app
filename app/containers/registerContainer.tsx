@@ -42,6 +42,7 @@ const RegisterComponent = (props: Props): JSX.Element => {
         </Item>
         <Item style={styles.defaultElem} stackedLabel last>
           <Input
+            style={{ marginLeft: -15 }}
             placeholder="Password"
             secureTextEntry
             onChangeText={str => setPassword(str)}
