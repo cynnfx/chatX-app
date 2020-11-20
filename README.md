@@ -27,7 +27,9 @@ Go to [ChatX](https://expo.io/@cynnfx/chatX) and flash the qr code with expoApp
 ChatX uses a number of open source projects to work properly:
 
 * [React-Native] - React-Native
+* [Redux] - Redux
 * [Expo] - Expo
+* [Native Base] - Native Base
 
 ### Installation
 
