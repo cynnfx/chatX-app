@@ -2,9 +2,9 @@ import { LOGUSER_SUCCESS } from '../../constants/action-types';
 import loguserError from './loguser-error';
 
 const loguserSuccess = (
-  email: Record<string, unknown>,
-  pass: Record<string, unknown>,
-  res: Record<string, unknown>,
+  email: string,
+  pass: string,
+  res: string,
 ): Record<string, unknown> => {
   let token;
   let name;

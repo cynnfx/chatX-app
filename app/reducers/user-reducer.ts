@@ -19,6 +19,7 @@ const initialState = {
   isAuth: false,
   isLoading: false,
   error: false,
+  roomsId: [],
 };
 
 export const getUserSelector = (
@@ -34,98 +35,116 @@ const userReducer = (
   switch (action.type) {
     case LOGUSER_SUCCESS: {
       return {
-        isAuth: true,
-        isLoading: false,
-        error: false,
         userInfo: {
           name: action.payload.name,
           email: action.payload.email,
           pass: action.payload.pass,
           token: action.payload.token,
         },
+        isAuth: true,
+        isLoading: false,
+        error: false,
+        roomsId: [],
       };
     }
     case LOGUSER_REQUEST: {
       return {
         ...state,
-        isAuth: false,
-        isLoading: true,
-        error: false,
         userInfo: {
           name: '',
           email: '',
           pass: '',
           token: '',
         },
+        isAuth: false,
+        isLoading: true,
+        error: false,
+        roomsId: [],
       };
     }
     case LOGUSER_ERROR: {
       return {
         ...state,
-        isAuth: false,
-        isLoading: false,
-        error: true,
         userInfo: {
           name: '',
           email: '',
           pass: '',
           token: '',
         },
+        isAuth: false,
+        isLoading: false,
+        error: true,
+        roomsId: [],
       };
     }
     case LOGOUTUSER: {
       return {
         ...state,
-        isAuth: false,
-        isLoading: false,
-        error: true,
         userInfo: {
           name: '',
           email: '',
           pass: '',
           token: '',
         },
+        isAuth: false,
+        isLoading: false,
+        error: true,
+        roomsId: [],
       };
     }
     case REGUSER_SUCCESS: {
       return {
-        isAuth: true,
-        isLoading: false,
-        error: false,
         userInfo: {
           name: action.payload.name,
           email: action.payload.email,
           pass: action.payload.pass,
           token: action.payload.token,
         },
+        isAuth: true,
+        isLoading: false,
+        error: false,
+        roomsId: [],
       };
     }
     case REGUSER_REQUEST: {
       return {
         ...state,
-        isAuth: false,
-        isLoading: true,
-        error: false,
         userInfo: {
           name: '',
           email: '',
           pass: '',
           token: '',
         },
+        isAuth: false,
+        isLoading: true,
+        error: false,
+        roomsId: [],
       };
     }
     case REGUSER_ERROR: {
       return {
         ...state,
-        isAuth: false,
-        isLoading: false,
-        error: true,
         userInfo: {
           name: '',
           email: '',
           pass: '',
           token: '',
         },
+        isAuth: false,
+        isLoading: false,
+        error: true,
+        roomsId: [],
+      };
+    }
+    case GET_ROOM_SUCCESS: {
+      return {
+        ...state,
+        roomsId: [...state.roomId, action.payload.roomId],
+      };
+    }
+    case GET_ROOM_ERROR: {
+      return {
+        ...state,
       };
     }
     default: {

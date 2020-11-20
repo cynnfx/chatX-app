@@ -31,7 +31,20 @@ export const registerRequest = (
     })
     .then(res => res)
     .catch(err => err);
-// email: 'txt@txt.fr',
-// password: 'azerty',
 
-// export default loginRequest;
+export const getRoomRequest = (
+  roomId: string,
+  lastUpdate: string,
+  token: string,
+): Record<string, unknown> =>
+  axios
+    .get(
+      `${config.API_URL}/chat/get?game_id=${roomId}&last_update=${lastUpdate}`,
+      {
+        headers: {
+          Authorization: `token ${token}`,
+        },
+      },
+    )
+    .then(res => res)
+    .catch(err => err);
