@@ -8,7 +8,7 @@ const logUser = (email: string, password: string) => (
 ): Record<string, unknown> => {
   dispatch(loguserRequest());
   return loginRequest(email, password)
-    .then(token => dispatch(loguserSuccess(email, password, token)))
+    .then(res => dispatch(loguserSuccess(email, password, res)))
     .catch(() => dispatch(loguserError()));
 };
 

@@ -7,15 +7,17 @@ const loguserSuccess = (
   res: Record<string, unknown>,
 ): Record<string, unknown> => {
   let token;
+  let name;
   try {
     if (res.status !== 200) return errPayload;
     token = res.data.Authorization;
+    name = res.data.user.username;
   } catch (e) {
     return loguserError();
   }
   return {
     type: LOGUSER_SUCCESS,
-    payload: { email, token, pass },
+    payload: { name, email, token, pass },
   };
 };
 

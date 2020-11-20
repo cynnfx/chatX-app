@@ -37,7 +37,7 @@ const userReducer = (
         isLoading: false,
         error: false,
         userInfo: {
-          name: state.name,
+          name: action.payload.name,
           email: action.payload.email,
           pass: action.payload.pass,
           token: action.payload.token,

@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Form, Item, Input, Button, Icon, Text } from 'native-base';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, BackHandler } from 'react-native';
 
 import { connect } from 'react-redux';
 import { getUserSelector } from '../reducers/user-reducer';
@@ -19,6 +19,10 @@ const RegisterComponent = (props: Props): JSX.Element => {
   }, [register, name, mail, password]);
 
   const navLogin = () => navigation.navigate('Login');
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => true);
+  }, []);
 
   return (
     <View style={styles.container}>
