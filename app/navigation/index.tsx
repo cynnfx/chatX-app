@@ -2,8 +2,8 @@ import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import {
   NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
+  // DefaultTheme,
+  // DarkTheme,
 } from '@react-navigation/native';
 // import { ColorSchemeName } from 'react-native';
 // import NotFoundScreen from '../screens/NotFoundScreen';
@@ -13,6 +13,7 @@ import {
 
 import LoginComponent from '../containers/loginContainer';
 import RegisterComponent from '../containers/registerContainer';
+import ProfileComponent from '../containers/profileContainer';
 
 // // A root stack navigator is often used for displaying modals on top of all other content
 // // Read more here: https://reactnavigation.org/docs/modal
@@ -77,6 +78,11 @@ const MainStack = (): JSX.Element => {
           name="Register"
           options={headerOpts("S'inscrire")}
           component={RegisterComponent}
+        />
+        <Stack.Screen
+          name="Profile"
+          options={headerOpts('Profile')}
+          component={ProfileComponent}
         />
       </Stack.Navigator>
     </NavigationContainer>

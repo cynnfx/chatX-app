@@ -1,6 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Form, Item, Input, Button, Icon, Text } from 'native-base';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, BackHandler } from 'react-native';
 
 import { connect } from 'react-redux';
 import { getUserSelector } from '../reducers/user-reducer';
@@ -9,7 +9,7 @@ import logUser from '../actions/user/loguser';
 import styles from './styles';
 
 const LoginComponent = (props: Props): JSX.Element => {
-  const { navigation, login } = props;
+  const { navigation, login, isAuth } = props;
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -18,6 +18,11 @@ const LoginComponent = (props: Props): JSX.Element => {
   }, [login, mail, password]);
 
   const navRegister = () => navigation.navigate('Register');
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => true);
+    if (isAuth) navigation.navigate('Profile');
+  }, [isAuth, navigation]);
 
   return (
     <View style={styles.container}>

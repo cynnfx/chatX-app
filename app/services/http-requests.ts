@@ -10,6 +10,14 @@ export const loginRequest = (
     .then(res => res)
     .catch(err => err);
 
+export const logoutRequest = (token: string): Record<string, unknown> =>
+  axios
+    .post(`${config.API_URL}/auth/logout`, {
+      token,
+    })
+    .then(res => res)
+    .catch(err => err);
+
 export const registerRequest = (
   name: string,
   email: string,
@@ -21,7 +29,6 @@ export const registerRequest = (
       username: name,
       password,
     })
-    // .then(res => res.json())
     .then(res => res)
     .catch(err => err);
 // email: 'txt@txt.fr',

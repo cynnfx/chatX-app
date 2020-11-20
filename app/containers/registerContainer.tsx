@@ -9,7 +9,7 @@ import regUser from '../actions/user/reguser';
 import styles from './styles';
 
 const RegisterComponent = (props: Props): JSX.Element => {
-  const { navigation, register } = props;
+  const { navigation, register, isAuth } = props;
   const [name, setName] = useState('');
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,7 +22,8 @@ const RegisterComponent = (props: Props): JSX.Element => {
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', () => true);
-  }, []);
+    if (isAuth) navigation.navigate('Profile');
+  }, [isAuth, navigation]);
 
   return (
     <View style={styles.container}>

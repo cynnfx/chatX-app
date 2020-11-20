@@ -3,6 +3,7 @@ import {
   LOGUSER_ERROR,
   LOGUSER_REQUEST,
   LOGUSER_SUCCESS,
+  LOGOUTUSER,
   REGUSER_ERROR,
   REGUSER_REQUEST,
   REGUSER_SUCCESS,
@@ -59,6 +60,20 @@ const userReducer = (
       };
     }
     case LOGUSER_ERROR: {
+      return {
+        ...state,
+        isAuth: false,
+        isLoading: false,
+        error: true,
+        userInfo: {
+          name: '',
+          email: '',
+          pass: '',
+          token: '',
+        },
+      };
+    }
+    case LOGOUTUSER: {
       return {
         ...state,
         isAuth: false,
