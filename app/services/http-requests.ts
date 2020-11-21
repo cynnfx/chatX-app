@@ -12,7 +12,7 @@ export const loginRequest = (
 
 export const logoutRequest = (token: string): Record<string, unknown> =>
   axios
-    .post(`${config.API_URL}/auth/logout`, {
+    .post(`${config.API_URL}auth/logout`, {
       token,
     })
     .then(res => res)
@@ -36,15 +36,28 @@ export const getRoomRequest = (
   roomId: string,
   lastUpdate: string,
   token: string,
+  roomName: string,
 ): Record<string, unknown> =>
   axios
     .get(
-      `${config.API_URL}/chat/get?game_id=${roomId}&last_update=${lastUpdate}`,
+      `${config.API_URL}chat/get?game_id=${roomId}&last_update=${lastUpdate}${
+        roomName !== '' ? `&room_name=${roomName}` : ''
+      }`,
       {
         headers: {
-          Authorization: `token ${token}`,
+          Authorization: `: ${token}`,
         },
       },
     )
+    .then(res => res)
+    .catch(err => err);
+
+export const getRoomListRequest = (token: string): Record<string, unknown> =>
+  axios
+    .get(`${config.API_URL}chat/getrooms`, {
+      headers: {
+        Authorization: `: ${token}`,
+      },
+    })
     .then(res => res)
     .catch(err => err);

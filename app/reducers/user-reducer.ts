@@ -7,6 +7,10 @@ import {
   REGUSER_ERROR,
   REGUSER_REQUEST,
   REGUSER_SUCCESS,
+  GET_ROOM_SUCCESS,
+  GET_ROOM_ERROR,
+  GET_ROOMLIST_SUCCESS,
+  GET_ROOMLIST_ERROR,
 } from '../constants/action-types';
 
 const initialState = {
@@ -139,10 +143,19 @@ const userReducer = (
     case GET_ROOM_SUCCESS: {
       return {
         ...state,
-        roomsId: [...state.roomId, action.payload.roomId],
       };
     }
     case GET_ROOM_ERROR: {
+      return {
+        ...state,
+      };
+    }
+    case GET_ROOMLIST_SUCCESS: {
+      return {
+        ...state,
+      };
+    }
+    case GET_ROOMLIST_ERROR: {
       return {
         ...state,
       };

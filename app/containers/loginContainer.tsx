@@ -21,7 +21,7 @@ const LoginComponent = (props: Props): JSX.Element => {
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', () => true);
-    if (isAuth) navigation.navigate('Profile');
+    if (isAuth) navigation.navigate('withauth');
   }, [isAuth, navigation]);
 
   return (

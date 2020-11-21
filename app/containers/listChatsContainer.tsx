@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect } from 'react';
-import { Text, Input, Button } from 'native-base';
+import React, { useCallback, useEffect, useState } from 'react';
+import { Text, Input, Button, Form, Item } from 'native-base';
 import { View, BackHandler } from 'react-native';
 
 import { connect } from 'react-redux';
@@ -10,11 +10,19 @@ import styles from './styles';
 
 const ListChatComponent = (props: Props): JSX.Element => {
   const { navigation, isAuth, userInfo, join } = props;
-  const [roomId, setRoomId] = useState('');
+  // const [roomId, setRoomId] = useState(
+  //   `_${Math.random().toString(36).substr(2, 9)}`,
+  // );
+  // const newRoomId = useState(`_${Math.random().toString(36).substr(2, 9)}`);
+  const [newRoomName, setnewRoomName] = useState('');
 
-  const onJoinClick = useCallback(() => {
-    join(roomId, userInfo.token);
-  }, [join, roomId, userInfo]);
+  const onCreateClick = useCallback(() => {
+    join(
+      `${Math.random().toString(36).substr(2, 9)}`,
+      userInfo.token,
+      newRoomName,
+    );
+  }, [join, userInfo, newRoomName]);
 
   // const navLogin = () => navigation.navigate('Login');
 
@@ -25,20 +33,29 @@ const ListChatComponent = (props: Props): JSX.Element => {
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text>Create or join Conversations</Text>
-        <Input
-          placeholder="ID Conversation"
-          onChangeText={str => setRoomId(str)}
-        />
+      <Form>
+        <Text style={{ ...styles.defaultElem, ...styles.centerElem }}>
+          Create or join Conversations
+        </Text>
+
+        <Item
+          style={{ ...styles.defaultElem, ...styles.defaultInput }}
+          stackedLabel
+        >
+          <Input
+            placeholder="Nom Conversation"
+            onChangeText={str => setnewRoomName(str)}
+          />
+        </Item>
+
         <Button
           style={{ ...styles.defaultElem, ...styles.centerElem }}
           primary
-          onPress={onJoinClick}
+          onPress={onCreateClick}
         >
           <Text>Go</Text>
         </Button>
-      </View>
+      </Form>
     </View>
   );
 };
@@ -49,7 +66,8 @@ const mapStateToProps = (state: Record<string, unknown>) =>
 const mapDispatchToProps = (
   dispatch: Dispatch<IGetAllAssets | ISetAllAssets>,
 ) => ({
-  join: (roomId, token) => dispatch(joinRoom(roomId, token)),
+  join: (roomId, token, roomName) =>
+    dispatch(joinRoom(roomId, token, roomName)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListChatComponent);

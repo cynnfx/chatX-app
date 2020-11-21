@@ -22,7 +22,7 @@ const RegisterComponent = (props: Props): JSX.Element => {
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', () => true);
-    if (isAuth) navigation.navigate('Profile');
+    if (isAuth) navigation.navigate('ListChats');
   }, [isAuth, navigation]);
 
   return (
