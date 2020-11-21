@@ -1,19 +1,14 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import {
   NavigationContainer,
   // DefaultTheme,
   // DarkTheme,
 } from '@react-navigation/native';
 // import { ColorSchemeName } from 'react-native';
-import { connect } from 'react-redux';
-import { getUserSelector } from '../reducers/user-reducer';
 
 import LoginComponent from '../containers/loginContainer';
 import RegisterComponent from '../containers/registerContainer';
-import ProfileComponent from '../containers/profileContainer';
-import ListChatComponent from '../containers/listChatsContainer';
 import MainNav from './mainNav';
 
 const headerOpts = (title: string) => ({
