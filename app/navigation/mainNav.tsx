@@ -6,6 +6,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import ProfileComponent from '../containers/profileContainer';
 import ListChatComponent from '../containers/listChatsContainer';
+import ChatComponent from '../containers/chatContainer';
 
 const Drawer = createDrawerNavigator();
 
@@ -14,6 +15,7 @@ const MainNav = (): JSX.Element => {
     <Drawer.Navigator initialRouteName="Home">
       <Drawer.Screen name="ListChats" component={ListChatComponent} />
       <Drawer.Screen name="Profile" component={ProfileComponent} />
+      <Drawer.Screen name="Chat" component={ChatComponent} />
     </Drawer.Navigator>
   );
 };

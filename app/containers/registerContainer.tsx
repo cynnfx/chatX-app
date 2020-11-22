@@ -36,7 +36,7 @@ const RegisterComponent = (props: Props): JSX.Element => {
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', () => true);
-    if (isAuth) navigation.navigate('ListChats');
+    if (isAuth) navigation.navigate('withauth');
     if (error === 'err_register') registerAlert();
   }, [isAuth, error, navigation]);
 

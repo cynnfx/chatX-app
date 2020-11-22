@@ -16,7 +16,9 @@ const ProfileComponent = (props: Props): JSX.Element => {
   }, [logout, userInfo]);
   // const navLogin = () => navigation.navigate('Login');
   useEffect(() => {
-    BackHandler.addEventListener('hardwareBackPress', () => true);
+    BackHandler.addEventListener('hardwareBackPress', () =>
+      navigation.navigate('ListChats'),
+    );
     if (!isAuth) navigation.navigate('Login');
   }, [isAuth, navigation]);
 
