@@ -66,7 +66,7 @@ const ListChatComponent = (props: Props): JSX.Element => {
         <FlatList
           data={rooms}
           renderItem={renderItem}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item.id.toString()}
         />
       </SafeAreaView>
     </View>

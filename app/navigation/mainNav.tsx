@@ -7,6 +7,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import ProfileComponent from '../containers/profileContainer';
 import ListChatComponent from '../containers/listChatsContainer';
 import ChatComponent from '../containers/chatContainer';
+import ShowComponent from '../containers/showContainer';
+import ShowPictureComponent from '../containers/showPictureContainer';
 
 const Drawer = createDrawerNavigator();
 
@@ -16,18 +18,10 @@ const MainNav = (): JSX.Element => {
       <Drawer.Screen name="ListChats" component={ListChatComponent} />
       <Drawer.Screen name="Profile" component={ProfileComponent} />
       <Drawer.Screen name="Chat" component={ChatComponent} />
+      <Drawer.Screen name="Localisation" component={ShowComponent} />
+      <Drawer.Screen name="Picture" component={ShowPictureComponent} />
     </Drawer.Navigator>
   );
 };
 
-// const mapStateToProps = (state: Record<string, unknown>) =>
-//   getUserSelector(state);
-//
-// const mapDispatchToProps = (
-//   dispatch: Dispatch<IGetAllAssets | ISetAllAssets>,
-// ) => ({
-//   // login: (email, password) => dispatch(logUser(email, password)),
-// });
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(MainNav);
 export default MainNav;
