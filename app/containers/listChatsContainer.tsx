@@ -17,13 +17,7 @@ const ListItem = ({ title, content }) => (
 
 const ListChatComponent = (props: Props): JSX.Element => {
   const { navigation, isAuth, userInfo, join, getRooms, rooms } = props;
-  // const [roomId, setRoomId] = useState(
-  //   `_${Math.random().toString(36).substr(2, 9)}`,
-  // );
-  // const newRoomId = useState(`_${Math.random().toString(36).substr(2, 9)}`);
   const [newRoomName, setnewRoomName] = useState('');
-  // const roomList = rooms;
-  // const roomList = props.userInfo.rooms;
 
   const onCreateClick = useCallback(() => {
     join(
@@ -33,17 +27,12 @@ const ListChatComponent = (props: Props): JSX.Element => {
     );
   }, [join, userInfo, newRoomName]);
 
-  // const navLogin = () => navigation.navigate('Login');
-
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', () => true);
     if (!isAuth) navigation.navigate('Login');
-    // console.log('yesssss');
-    // console.log(userInfo.rooms);
     getRooms(userInfo.token);
   }, [getRooms, isAuth, userInfo, navigation]);
 
-  // const renderItem = () => <ListItem title="tt" />;
   const renderItem = ({ item }) => (
     <ListItem title={item.name} content={item.game_id} />
   );

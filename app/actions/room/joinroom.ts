@@ -1,3 +1,4 @@
+import getRoomList from './getroomlist';
 import { getRoomRequest } from '../../services/http-requests';
 import { GET_ROOM_SUCCESS, GET_ROOM_ERROR } from '../../constants/action-types';
 
@@ -28,6 +29,7 @@ const joinRoom = (roomId: string, token: string, roomName: string) => (
   return getRoomRequest(roomId, 0, token, roomName)
     .then(res => {
       dispatch(joinSuccess(res));
+      dispatch(getRoomList(token));
     })
     .catch(() => dispatch({ type: 'default' }));
 };

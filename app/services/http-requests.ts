@@ -61,3 +61,24 @@ export const getRoomListRequest = (token: string): Record<string, unknown> =>
     })
     .then(res => res)
     .catch(err => err);
+
+export const postPostListRequest = (
+  msg: string,
+  roomId: string,
+  token: string,
+): Record<string, unknown> =>
+  axios
+    .post(
+      `${config.API_URL}chat/post`,
+      {
+        game_id: roomId,
+        post: msg,
+      },
+      {
+        headers: {
+          Authorization: `: ${token}`,
+        },
+      },
+    )
+    .then(res => res)
+    .catch(err => err);
