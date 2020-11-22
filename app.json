@@ -19,7 +19,13 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.cynnfx.chatX"
+      "bundleIdentifier": "com.cynnfx.chatX",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to let user take picture.",
+        "NSLocationWhenInUseUsageDescription": "This app uses the loaction to let user know it.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "This app uses the loaction to let user know it.",
+        "NSLocationAlwaysUsageDescription": "This app uses the loaction to let user know it."
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

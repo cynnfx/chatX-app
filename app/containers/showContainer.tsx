@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Text } from 'native-base';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Text, Button, Icon } from 'native-base';
 import { View, BackHandler } from 'react-native';
 
 import { connect } from 'react-redux';
 import * as Location from 'expo-location';
+import * as Haptic from 'expo-haptics';
 import { getUserSelector } from '../reducers/user-reducer';
 
 import styles from './styles';
@@ -14,8 +15,13 @@ const ShowComponent = (props: Props): JSX.Element => {
   const [location, setLocation] = useState(null);
   const [errorMsg, setErrorMsg] = useState(null);
 
+  const onVibrateClick = useCallback(() => {
+    Haptic.impactAsync(Haptic.ImpactFeedbackStyle.Hard);
+  }, []);
+
   useEffect(() => {
     (async () => {
+      // Location.getCurrentPositionAsync({ enableHighAccuracy: true });
       const { status } = await Location.requestPermissionsAsync();
       if (status !== 'granted') {
         setErrorMsg('Permission to access location was denied');
@@ -55,7 +61,15 @@ const ShowComponent = (props: Props): JSX.Element => {
 
   return (
     <View style={styles.container}>
-      <Text>{'Juantu suce <3'}</Text>
+      <Button
+        style={{ ...styles.defaultElem, ...styles.centerElem }}
+        iconLeft
+        primary
+        onPress={onVibrateClick}
+      >
+        <Icon name="people" />
+        <Text>Vibration</Text>
+      </Button>
       <Text>Position:</Text>
       <Text />
       {position}
