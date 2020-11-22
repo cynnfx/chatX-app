@@ -9,7 +9,6 @@ const errPayload = (): Record<string, unknown> => {
 };
 
 const joinSuccess = (res: string): Record<string, unknown> => {
-  // console.log(res);
   let roomId;
   try {
     if (res.status !== 200) return errPayload();
@@ -27,7 +26,9 @@ const joinRoom = (roomId: string, token: string, roomName: string) => (
   dispatch: Dispatch<IGetAllAssets | ISetAllAssets>,
 ): Record<string, unknown> => {
   return getRoomRequest(roomId, 0, token, roomName)
-    .then(res => dispatch(joinSuccess(res)))
+    .then(res => {
+      dispatch(joinSuccess(res));
+    })
     .catch(() => dispatch({ type: 'default' }));
 };
 

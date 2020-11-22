@@ -1,20 +1,29 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Text, Input, Button, Form, Item } from 'native-base';
-import { View, BackHandler } from 'react-native';
+import { View, BackHandler, FlatList, SafeAreaView } from 'react-native';
 
 import { connect } from 'react-redux';
 import { getUserSelector } from '../reducers/user-reducer';
 import joinRoom from '../actions/room/joinroom';
-
+import getRoomList from '../actions/room/getroomlist';
 import styles from './styles';
 
+const ListItem = ({ title, content }) => (
+  <View>
+    <Text>{title}</Text>
+    <Text>{content}</Text>
+  </View>
+);
+
 const ListChatComponent = (props: Props): JSX.Element => {
-  const { navigation, isAuth, userInfo, join } = props;
+  const { navigation, isAuth, userInfo, join, getRooms, rooms } = props;
   // const [roomId, setRoomId] = useState(
   //   `_${Math.random().toString(36).substr(2, 9)}`,
   // );
   // const newRoomId = useState(`_${Math.random().toString(36).substr(2, 9)}`);
   const [newRoomName, setnewRoomName] = useState('');
+  // const roomList = rooms;
+  // const roomList = props.userInfo.rooms;
 
   const onCreateClick = useCallback(() => {
     join(
@@ -29,7 +38,15 @@ const ListChatComponent = (props: Props): JSX.Element => {
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', () => true);
     if (!isAuth) navigation.navigate('Login');
-  }, [isAuth, navigation]);
+    // console.log('yesssss');
+    // console.log(userInfo.rooms);
+    getRooms(userInfo.token);
+  }, [getRooms, isAuth, userInfo, navigation]);
+
+  // const renderItem = () => <ListItem title="tt" />;
+  const renderItem = ({ item }) => (
+    <ListItem title={item.name} content={item.game_id} />
+  );
 
   return (
     <View style={styles.container}>
@@ -56,6 +73,13 @@ const ListChatComponent = (props: Props): JSX.Element => {
           <Text>Go</Text>
         </Button>
       </Form>
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          data={rooms}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+        />
+      </SafeAreaView>
     </View>
   );
 };
@@ -68,6 +92,7 @@ const mapDispatchToProps = (
 ) => ({
   join: (roomId, token, roomName) =>
     dispatch(joinRoom(roomId, token, roomName)),
+  getRooms: token => dispatch(getRoomList(token)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListChatComponent);

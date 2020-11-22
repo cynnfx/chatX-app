@@ -24,7 +24,7 @@ const initialState = {
   isAuth: false,
   isLoading: false,
   error: false,
-  roomsId: [],
+  rooms: [],
 };
 
 export const getUserSelector = (
@@ -49,7 +49,7 @@ const userReducer = (
         isAuth: true,
         isLoading: false,
         error: false,
-        roomsId: [],
+        rooms: [],
       };
     }
     case LOGUSER_REQUEST: {
@@ -64,7 +64,7 @@ const userReducer = (
         isAuth: false,
         isLoading: true,
         error: false,
-        roomsId: [],
+        rooms: [],
       };
     }
     case LOGUSER_ERROR: {
@@ -79,7 +79,7 @@ const userReducer = (
         isAuth: false,
         isLoading: false,
         error: 'err_login',
-        roomsId: [],
+        rooms: [],
       };
     }
     case LOGOUTUSER: {
@@ -94,7 +94,7 @@ const userReducer = (
         isAuth: false,
         isLoading: false,
         error: true,
-        roomsId: [],
+        rooms: [],
       };
     }
     case REGUSER_SUCCESS: {
@@ -108,7 +108,7 @@ const userReducer = (
         isAuth: true,
         isLoading: false,
         error: false,
-        roomsId: [],
+        rooms: [],
       };
     }
     case REGUSER_REQUEST: {
@@ -123,7 +123,7 @@ const userReducer = (
         isAuth: false,
         isLoading: true,
         error: false,
-        roomsId: [],
+        rooms: [],
       };
     }
     case REGUSER_ERROR: {
@@ -138,7 +138,7 @@ const userReducer = (
         isAuth: false,
         isLoading: false,
         error: 'err_register',
-        roomsId: [],
+        rooms: [],
       };
     }
     case RESET_ERR: {
@@ -158,8 +158,11 @@ const userReducer = (
       };
     }
     case GET_ROOMLIST_SUCCESS: {
+      // console.log('REDUUUUUUUUUUUUUUUX');
+      // console.log(action.payload.rooms);
       return {
         ...state,
+        rooms: action.payload.rooms,
       };
     }
     case GET_ROOMLIST_ERROR: {
