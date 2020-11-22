@@ -11,6 +11,7 @@ import {
   GET_ROOM_ERROR,
   GET_ROOMLIST_SUCCESS,
   GET_ROOMLIST_ERROR,
+  RESET_ERR,
 } from '../constants/action-types';
 
 const initialState = {
@@ -77,7 +78,7 @@ const userReducer = (
         },
         isAuth: false,
         isLoading: false,
-        error: true,
+        error: 'err_login',
         roomsId: [],
       };
     }
@@ -136,8 +137,14 @@ const userReducer = (
         },
         isAuth: false,
         isLoading: false,
-        error: true,
+        error: 'err_register',
         roomsId: [],
+      };
+    }
+    case RESET_ERR: {
+      return {
+        ...state,
+        error: false,
       };
     }
     case GET_ROOM_SUCCESS: {

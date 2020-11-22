@@ -1,29 +1,44 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { Form, Item, Input, Button, Icon, Text } from 'native-base';
-import { View, TouchableOpacity, BackHandler } from 'react-native';
+import { View, TouchableOpacity, Alert, BackHandler } from 'react-native';
 
 import { connect } from 'react-redux';
 import { getUserSelector } from '../reducers/user-reducer';
 import regUser from '../actions/user/reguser';
+import resetErr from '../actions/user/reseterr';
 
 import styles from './styles';
 
 const RegisterComponent = (props: Props): JSX.Element => {
-  const { navigation, register, isAuth } = props;
+  const { navigation, resetError, register, isAuth, error } = props;
   const [name, setName] = useState('');
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
 
-  const onLoginClick = useCallback(() => {
+  const registerAlert = () =>
+    Alert.alert(
+      'Erreur inscription',
+      'Vérifiez les informations entrées',
+      [{ text: 'OK' }],
+      {
+        cancelable: false,
+      },
+    );
+
+  const onRegisterClick = useCallback(() => {
     register(name, mail, password);
   }, [register, name, mail, password]);
 
-  const navLogin = () => navigation.navigate('Login');
+  const navLogin = () => {
+    navigation.navigate('Login');
+    resetError();
+  };
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', () => true);
     if (isAuth) navigation.navigate('ListChats');
-  }, [isAuth, navigation]);
+    if (error === 'err_register') registerAlert();
+  }, [isAuth, error, navigation]);
 
   return (
     <View style={styles.container}>
@@ -52,7 +67,7 @@ const RegisterComponent = (props: Props): JSX.Element => {
           style={{ ...styles.defaultElem, ...styles.centerElem }}
           iconLeft
           success
-          onPress={onLoginClick}
+          onPress={onRegisterClick}
         >
           <Icon name="people" />
           <Text>inscription</Text>
@@ -80,8 +95,8 @@ const mapStateToProps = (state: Record<string, unknown>) =>
 const mapDispatchToProps = (
   dispatch: Dispatch<IGetAllAssets | ISetAllAssets>,
 ) => ({
-  // login: (email, password) => dispatch(logUser(email, password)),
   register: (name, email, password) => dispatch(regUser(name, email, password)),
+  resetError: () => dispatch(resetErr()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterComponent);
