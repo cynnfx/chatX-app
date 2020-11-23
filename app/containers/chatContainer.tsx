@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { List, Content, Textarea, Button, Icon } from 'native-base';
+import React, { useState, useEffect, useCallback } from 'react';
+import { List, Content, Button, Icon, Item, Input } from 'native-base';
 import { View, BackHandler, LogBox } from 'react-native';
 import BubbleChat from '../components/BubbleChat';
-import { getRoomRequest } from '../services/http-requests';
+import { getRoomRequest, postPostRequest } from '../services/http-requests';
+
 import styles from './styles';
 
-LogBox.ignoreWarnings([
+LogBox.ignoreLogs([
   'Non-serializable values were found in the navigation state',
 ]);
+
 const ChatComponent = (props: Props): JSX.Element => {
   const {
     route: {
@@ -15,6 +17,15 @@ const ChatComponent = (props: Props): JSX.Element => {
     },
   } = props;
   const [message, setMessage] = useState('');
+  const [userInput, setUserInput] = useState('');
+
+  const onSendClick = useCallback(() => {
+    postPostRequest(userInput, roomId, userInfo.token)
+      .then(res => {
+        setMessage(res.data.data.posts);
+      })
+      .catch(err => err);
+  }, [userInput, userInfo, roomId]);
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', () =>
@@ -25,6 +36,14 @@ const ChatComponent = (props: Props): JSX.Element => {
         setMessage(res.data.data.posts);
       })
       .catch(err => err);
+    const interval = setInterval(() => {
+      getRoomRequest(roomId, 0, userInfo.token, '')
+        .then(res => {
+          setMessage(res.data.data.posts);
+        })
+        .catch(err => err);
+    }, 1000);
+    return () => clearInterval(interval);
   }, [navigation, userInfo, roomId, setMessage]);
 
   let listChat = null;
@@ -48,11 +67,13 @@ const ChatComponent = (props: Props): JSX.Element => {
       <View style={{ flex: 1, flexDirection: 'column' }}>{listChat}</View>
       <View style={{ flex: 0.15, flexDirection: 'row', alignSelf: 'center' }}>
         <Content padder>
-          <Textarea rowSpan={2} bordered placeholder="Textarea" />
+          <Item>
+            <Input placeholder="..." onChangeText={str => setUserInput(str)} />
+            <Button primary onPress={onSendClick}>
+              <Icon name="send" />
+            </Button>
+          </Item>
         </Content>
-        <Button transparent style={{ alignSelf: 'center' }}>
-          <Icon name="send" />
-        </Button>
       </View>
     </View>
   );

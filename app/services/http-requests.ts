@@ -62,7 +62,7 @@ export const getRoomListRequest = (token: string): Record<string, unknown> =>
     .then(res => res)
     .catch(err => err);
 
-export const postPostListRequest = (
+export const postPostRequest = (
   msg: string,
   roomId: string,
   token: string,

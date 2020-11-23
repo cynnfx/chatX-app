@@ -43,6 +43,10 @@ const ListChatComponent = (props: Props): JSX.Element => {
     BackHandler.addEventListener('hardwareBackPress', () => true);
     if (!isAuth) navigation.navigate('Login');
     getRooms(userInfo.token);
+    const interval = setInterval(() => {
+      getRooms(userInfo.token);
+    }, 1000);
+    return () => clearInterval(interval);
   }, [getRooms, isAuth, userInfo, navigation]);
 
   const renderItem = ({ item }) => (
