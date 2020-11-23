@@ -2,15 +2,17 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { Form, List, Content, Textarea, Button, Text, Icon } from 'native-base';
 import { View, TouchableOpacity, Alert, BackHandler } from 'react-native';
 import PureCompMessage from '../components/chatComponents/PureCompMessage'
-import httpRequest from '../services/http-requests'
 import { getRoomRequest } from '../services/http-requests';
+import axios from 'axios';
+import config from '../config';
 
 import { connect } from 'react-redux';
 import { getUserSelector } from '../reducers/user-reducer';
 import styles from './styles';
 
 const ChatComponent = (props: Props): JSX.Element => {
-  const { navigation, resetError, login, isAuth, error } = props;
+  const { navigation, userInfo, resetError, login, isAuth, error } = props;
+  const [message, setMessage] = useState('');
   const messages = [
     {
         username: 'Jeanne',
@@ -74,12 +76,27 @@ const ChatComponent = (props: Props): JSX.Element => {
     },
   ]
 
+
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', () =>
       navigation.navigate('ListChats'),
     );
+    axios
+    .get(
+      `${config.API_URL}chat/get?game_id=chat4all&last_update=0&room_name=chat4all`,
+      {
+        headers: {
+          Authorization: `: ${userInfo.token}`,
+        },
+      },
+    )
+    .then(res => {
+      setMessage(res.data.data.posts)
+      console.log(res.data.data.posts)
+    })
+    .catch(err => err);
     if (!isAuth) navigation.navigate('Login');
-  }, [isAuth, navigation]);
+  }, [isAuth, navigation, userInfo, setMessage]);
 
 
   return (
