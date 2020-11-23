@@ -25,7 +25,8 @@ const ChatComponent = (props: Props): JSX.Element => {
         setMessage(res.data.data.posts);
       })
       .catch(err => err);
-  }, [userInput, userInfo, roomId]);
+    setUserInput('');
+  }, [userInput, userInfo, roomId, setUserInput]);
 
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', () =>
