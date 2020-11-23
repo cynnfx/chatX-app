@@ -69,7 +69,11 @@ const ChatComponent = (props: Props): JSX.Element => {
       <View style={{ flex: 0.15, flexDirection: 'row', alignSelf: 'center' }}>
         <Content padder>
           <Item>
-            <Input placeholder="..." onChangeText={str => setUserInput(str)} />
+            <Input
+              value={userInput}
+              placeholder="..."
+              onChangeText={str => setUserInput(str)}
+            />
             <Button primary onPress={onSendClick}>
               <Icon name="send" />
             </Button>
