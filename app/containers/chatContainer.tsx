@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { List, Content, Textarea, Button, Icon } from 'native-base';
-import { View, BackHandler } from 'react-native';
+import { View, BackHandler, LogBox } from 'react-native';
 import BubbleChat from '../components/BubbleChat';
 import { getRoomRequest } from '../services/http-requests';
 import styles from './styles';
 
+LogBox.ignoreWarnings([
+  'Non-serializable values were found in the navigation state',
+]);
 const ChatComponent = (props: Props): JSX.Element => {
   const {
     route: {
