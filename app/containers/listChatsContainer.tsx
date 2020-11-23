@@ -1,6 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Text, Input, Button, Form, Item } from 'native-base';
-import { View, BackHandler, FlatList, SafeAreaView } from 'react-native';
+import {
+  View,
+  BackHandler,
+  FlatList,
+  SafeAreaView,
+  TouchableHighlight,
+} from 'react-native';
 
 import { connect } from 'react-redux';
 import { getUserSelector } from '../reducers/user-reducer';
@@ -8,11 +14,17 @@ import joinRoom from '../actions/room/joinroom';
 import getRoomList from '../actions/room/getroomlist';
 import styles from './styles';
 
-const ListItem = ({ title, content }) => (
-  <View>
-    <Text>{title}</Text>
-    <Text>{content}</Text>
-  </View>
+const ListItem = ({ title, roomId, content, userInfo, navigation }) => (
+  <TouchableHighlight
+    onPress={() =>
+      navigation.navigate('Chat', { roomId, userInfo, navigation })
+    }
+  >
+    <View>
+      <Text>{title}</Text>
+      <Text>{content}</Text>
+    </View>
+  </TouchableHighlight>
 );
 
 const ListChatComponent = (props: Props): JSX.Element => {
@@ -34,7 +46,13 @@ const ListChatComponent = (props: Props): JSX.Element => {
   }, [getRooms, isAuth, userInfo, navigation]);
 
   const renderItem = ({ item }) => (
-    <ListItem title={item.name} content={item.game_id} />
+    <ListItem
+      title={item.name}
+      roomId={item.game_id}
+      content={item.game_id}
+      userInfo={userInfo}
+      navigation={navigation}
+    />
   );
 
   return (

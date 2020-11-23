@@ -5,7 +5,6 @@ import {
   // DefaultTheme,
   // DarkTheme,
 } from '@react-navigation/native';
-// import { ColorSchemeName } from 'react-native';
 
 import LoginComponent from '../containers/loginContainer';
 import RegisterComponent from '../containers/registerContainer';
@@ -51,14 +50,4 @@ const MainStack = (): JSX.Element => {
   );
 };
 
-// const mapStateToProps = (state: Record<string, unknown>) =>
-//   getUserSelector(state);
-//
-// const mapDispatchToProps = (
-//   dispatch: Dispatch<IGetAllAssets | ISetAllAssets>,
-// ) => ({
-//   // login: (email, password) => dispatch(logUser(email, password)),
-// });
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(MainStack);
 export default MainStack;
