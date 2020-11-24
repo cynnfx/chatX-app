@@ -1,4 +1,6 @@
+import { Right, Row } from 'native-base';
 import { StyleSheet } from 'react-native';
+import { color } from 'react-native-reanimated';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,6 +27,29 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
   },
+  chatItemView: {
+    height: 50,
+    flexDirection: 'row',
+    paddingLeft: 10,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderWidth: 1,
+    borderColor: '#DDDDDD',
+    backgroundColor: 'white',
+  },
+  chatItemTitle: {
+    fontWeight: '600',
+    fontSize: 18,
+  },
+  chatItemSubTitle: {
+    color: 'grey'
+  },
+  goToChatView: {
+    flexDirection: 'row',
+    alignSelf: 'center',
+    alignItems: 'center',
+  
+  }
 });
 
 export default styles;

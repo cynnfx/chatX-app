@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Text, Input, Button, Form, Item } from 'native-base';
+import { Text, Input, Button, Form, Item, Icon } from 'native-base';
 import {
   View,
   BackHandler,
@@ -20,9 +20,12 @@ const ListItem = ({ title, roomId, content, userInfo, navigation }) => (
       navigation.navigate('Chat', { roomId, userInfo, navigation })
     }
   >
-    <View>
-      <Text>{title}</Text>
-      <Text>{content}</Text>
+    <View style={styles.chatItemView}>
+      <Text style={styles.chatItemTitle}>{title}</Text>
+      <View style={{flexDirection: 'row', alignItems: 'center', paddingRight: 10}}>
+        <Text style={styles.chatItemSubTitle}>{content.length} </Text>
+        <Icon active name='paper' />
+      </View>
     </View>
   </TouchableHighlight>
 );
@@ -62,27 +65,19 @@ const ListChatComponent = (props: Props): JSX.Element => {
   return (
     <View style={styles.container}>
       <Form>
-        <Text style={{ ...styles.defaultElem, ...styles.centerElem }}>
-          Create or join Conversations
-        </Text>
-
-        <Item
-          style={{ ...styles.defaultElem, ...styles.defaultInput }}
-          stackedLabel
-        >
-          <Input
-            placeholder="Nom Conversation"
-            onChangeText={str => setnewRoomName(str)}
-          />
-        </Item>
-
-        <Button
-          style={{ ...styles.defaultElem, ...styles.centerElem }}
-          primary
-          onPress={onCreateClick}
-        >
-          <Text>Go</Text>
-        </Button>
+        <View style={{...styles.goToChatView}}>
+            <Item
+              style={{ ...styles.defaultElem, ...styles.defaultInput }}
+              stackedLabel
+            >
+              <Input
+              style={{fontStyle: 'italic'}}
+                placeholder="Rejoindre une Conversation"
+                onChangeText={str => setnewRoomName(str)}
+              />
+            </Item>
+              <Icon active name='arrow-forward' style={{color: 'black'}} onPress={onCreateClick}/>
+        </View>
       </Form>
       <SafeAreaView style={styles.container}>
         <FlatList
