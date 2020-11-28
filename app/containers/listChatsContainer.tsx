@@ -22,9 +22,11 @@ const ListItem = ({ title, roomId, content, userInfo, navigation }) => (
   >
     <View style={styles.chatItemView}>
       <Text style={styles.chatItemTitle}>{title}</Text>
-      <View style={{flexDirection: 'row', alignItems: 'center', paddingRight: 10}}>
+      <View
+        style={{ flexDirection: 'row', alignItems: 'center', paddingRight: 10 }}
+      >
         <Text style={styles.chatItemSubTitle}>{content.length} </Text>
-        <Icon active name='paper' />
+        <Icon active name="paper" />
       </View>
     </View>
   </TouchableHighlight>
@@ -65,18 +67,23 @@ const ListChatComponent = (props: Props): JSX.Element => {
   return (
     <View style={styles.container}>
       <Form>
-        <View style={{...styles.goToChatView}}>
-            <Item
-              style={{ ...styles.defaultElem, ...styles.defaultInput }}
-              stackedLabel
-            >
-              <Input
-              style={{fontStyle: 'italic'}}
-                placeholder="Rejoindre une Conversation"
-                onChangeText={str => setnewRoomName(str)}
-              />
-            </Item>
-              <Icon active name='arrow-forward' style={{color: 'black'}} onPress={onCreateClick}/>
+        <View style={{ ...styles.goToChatView }}>
+          <Item
+            style={{ ...styles.defaultElem, ...styles.defaultInput }}
+            stackedLabel
+          >
+            <Input
+              style={{ fontStyle: 'italic' }}
+              placeholder="Rejoindre une Conversation"
+              onChangeText={str => setnewRoomName(str)}
+            />
+          </Item>
+          <Icon
+            active
+            name="arrow-forward"
+            style={{ color: 'black' }}
+            onPress={onCreateClick}
+          />
         </View>
       </Form>
       <SafeAreaView style={styles.container}>
