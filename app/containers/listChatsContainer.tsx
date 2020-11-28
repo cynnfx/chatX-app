@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Text, Input, Button, Form, Item, Icon } from 'native-base';
+import { Text, Input, Form, Item, Icon } from 'native-base';
 import {
   View,
   BackHandler,
